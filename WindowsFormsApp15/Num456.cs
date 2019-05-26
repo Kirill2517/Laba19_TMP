@@ -28,9 +28,17 @@ namespace WindowsFormsApp15
                 int y = 0;
                 while (!streamReader.EndOfStream)
                 {
-                    y = Convert.ToInt32(streamReader.ReadLine());
+                    try
+                    {
+                        y = Convert.ToInt32(streamReader.ReadLine());
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Неправильный формат данных в файле! Неверным точкам будет присвоен 0");
+                    }
                     chart1.Series[0].Points.AddXY(x, y);
                     x++;
+
                 }
                 chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
                 chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
@@ -44,6 +52,11 @@ namespace WindowsFormsApp15
                 streamReader.Close();
             }
             
+
+        }
+
+        private void Num456_Load(object sender, EventArgs e)
+        {
 
         }
     }
